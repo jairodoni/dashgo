@@ -1,7 +1,13 @@
 import { Flex, Icon, Input } from "@chakra-ui/react";
+import { useRef } from "react";
 import { RiSearchLine } from "react-icons/ri";
 
+
+
 export function SerachBox() {
+  //ref de referencia ou reference em ingles
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   return (
     <Flex
     as="label"
@@ -26,6 +32,7 @@ export function SerachBox() {
         color:
         'gray.400'
         }}
+        ref={searchInputRef}
       />
       <Icon as={RiSearchLine} fontSize="20" />
     </Flex>
