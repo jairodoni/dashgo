@@ -30,10 +30,9 @@ export default function CreateUser() {
   })
 
   const { errors } = formState;
- 
+
   const handleCreateUsers: SubmitHandler<CreateUserFormData> = async (data) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log(data)
   }
 
   return (
@@ -48,7 +47,7 @@ export default function CreateUser() {
           flex="1"
           borderRadius={8}
           bg="gray.800"
-          p={["6","8"]}
+          p={["6", "8"]}
           onSubmit={handleSubmit(handleCreateUsers)}
         >
           <Heading size="lg" fontWeight="normal">Criar usuário</Heading>
@@ -61,14 +60,14 @@ export default function CreateUser() {
                 label="Nome Completo"
                 name="name"
                 error={errors.name}
-                {...register('name')} 
+                {...register('name')}
               />
               <Input
                 label="E-mail"
                 name="email"
                 type="email"
                 error={errors.email}
-                {...register('email')} 
+                {...register('email')}
               />
             </SimpleGrid>
             <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
@@ -77,14 +76,14 @@ export default function CreateUser() {
                 name="password"
                 type="password"
                 error={errors.password}
-                {...register('password')} 
+                {...register('password')}
               />
               <Input
                 label="Confirmação da senha"
                 name="password_confirmation"
                 type="password"
                 error={errors.password_confirmation}
-                {...register('password_confirmation')} 
+                {...register('password_confirmation')}
               />
             </SimpleGrid>
           </VStack>
@@ -101,7 +100,7 @@ export default function CreateUser() {
                 colorScheme="pink"
                 isLoading={formState.isSubmitting}
               >
-                  Salvar
+                Salvar
               </Button>
 
             </HStack>

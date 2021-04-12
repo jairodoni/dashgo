@@ -60,7 +60,7 @@ const options = {
 
 //tipos de dados dentro do grafico
 const series = [
-  {name: 'series1', data: [31, 120, 10, 28, 61, 18, 109]}
+  { name: 'series1', data: [31, 120, 10, 28, 61, 18, 109] }
 ];
 
 export default function Dashboard() {
@@ -68,13 +68,13 @@ export default function Dashboard() {
     <Flex direction="column" h="100vh">
       <Header />
 
-      <Flex w="100%" my="6"maxWidth={1400} mx="auto" px="6">
+      <Flex w="100%" my="6" maxWidth={1400} mx="auto" px="6">
 
         <Sidebar />
 
         <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
           <Box
-            p={["6","8"]}
+            p={["6", "8"]}
             bg="gray.800"
             borderRadius={8}
             pb="4"
@@ -83,10 +83,10 @@ export default function Dashboard() {
             <Chart options={options} series={series} type="area" height={160} />
           </Box>
           <Box
-             p={["6","8"]}
+            p={["6", "8"]}
             bg="gray.800"
             borderRadius={8}
-            // pb="4"
+          // pb="4"
           >
             <Text fontSize="lg" mb="4">Taxa de abertura</Text>
             <Chart options={options} series={series} type="area" height={160} />
