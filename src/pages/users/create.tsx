@@ -1,11 +1,15 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Link from "next/link";
+import { useMutation } from "react-query";
 import { Input } from "../../components/Form/Input";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
+import { api } from "../../services/api";
+import { queryClient } from "../../services/queryClient";
 
 type CreateUserFormData = {
   name: string;
@@ -25,14 +29,32 @@ const createUserFormSchema = yup.object().shape({
 
 
 export default function CreateUser() {
-  const { register, handleSubmit, formState } = useForm({
+  const router = useRouter();
+  const createUser = useMutation(async (user: CreateUserFormData) => {
+    const response = await api.post('users', {
+      user: {
+        ...user,
+        created_at: new Date(),
+      }
+    })
+
+    return response.data.user;
+  }, {
+    //caso cadastre com sucesso
+    onSuccess: () => {
+      //apaga a listagem em cache (por consequencia é puxado os dados novamente, atualizando os dados)
+      queryClient.invalidateQueries('users');
+    }
+  });
+
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(createUserFormSchema)
   })
 
-  const { errors } = formState;
+  const handleCreateUser: SubmitHandler<CreateUserFormData> = async (data) => {
+    await createUser.mutateAsync(data);
 
-  const handleCreateUsers: SubmitHandler<CreateUserFormData> = async (data) => {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    router.push('/users');
   }
 
   return (
@@ -48,7 +70,7 @@ export default function CreateUser() {
           borderRadius={8}
           bg="gray.800"
           p={["6", "8"]}
-          onSubmit={handleSubmit(handleCreateUsers)}
+          onSubmit={handleSubmit(handleCreateUser)}
         >
           <Heading size="lg" fontWeight="normal">Criar usuário</Heading>
 
@@ -98,7 +120,7 @@ export default function CreateUser() {
               <Button
                 type="submit"
                 colorScheme="pink"
-                isLoading={formState.isSubmitting}
+                isLoading={isSubmitting}
               >
                 Salvar
               </Button>
