@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClientProvider } from "react-query";
 import { SidebarDrawerProvider } from '../context/SidebarDrawerContext';
 import { makeServer } from '../services/mirage';
+import { AuthProvider } from '../context/AuthContext';
 import { queryClient } from '../services/queryClient';
 
 if (process.env.NODE_ENV === 'development') {
@@ -16,13 +17,15 @@ if (process.env.NODE_ENV === 'development') {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <SidebarDrawerProvider>
-          <Component {...pageProps} />
-        </SidebarDrawerProvider>
-      </ChakraProvider>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+          <ChakraProvider theme={theme}>
+            <AuthProvider>
+              <SidebarDrawerProvider>
+                  <Component {...pageProps} />
+              </SidebarDrawerProvider>
+            </AuthProvider>
+          </ChakraProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
   )
 }
 

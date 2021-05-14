@@ -8,7 +8,7 @@ import { useMutation } from "react-query";
 import { Input } from "../../components/Form/Input";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
-import { api } from "../../services/api";
+import { api } from "../../services/apiMirage";
 import { queryClient } from "../../services/queryClient";
 
 type CreateUserFormData = {

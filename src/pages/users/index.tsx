@@ -9,7 +9,7 @@ import { getUsers, useUsers } from "../../services/hooks/useUsers";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
-import { api } from "../../services/api";
+import { api } from "../../services/apiMirage";
 import { queryClient } from "../../services/queryClient";
 import { GetServerSideProps } from "next";
 

@@ -1,7 +1,14 @@
 import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
+import { useContext, useEffect } from "react";
+import { Head } from 'next/document';
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
+import { api } from "../services/apiClient";
+import { userCan } from "../services/hooks/useCan";
+import { AuthContext } from "../context/AuthContext";
+import { setupAPIClient } from "../services/api";
+import { withSSRAuth } from "../utils/withSSRAuth";
 
 //como o Chart só funciona na camada do Clinet(browser), 
 //o SSR(Server Side Rendering) precisa ser desativado para funcionar
@@ -63,37 +70,59 @@ const series = [
   { name: 'series1', data: [31, 120, 10, 28, 61, 18, 109] }
 ];
 
+
 export default function Dashboard() {
+  const { user, isAuthenticated } = useContext(AuthContext)
+  
+  const userCanSeeMetrics = userCan({
+    permissions:['metrics.list']
+  });
+  
+  useEffect(() => {
+    api.get('/me')
+    .then(response => console.log(response));
+  }, []);
+
   return (
-    <Flex direction="column" h="100vh">
-      <Header />
+      <Flex direction="column" h="100vh">
+        <Header />
 
-      <Flex w="100%" my="6" maxWidth={1400} mx="auto" px="6">
+        <Flex w="100%" my="6" maxWidth={1400} mx="auto" px="6">
 
-        <Sidebar />
+          <Sidebar />
 
-        <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
-          <Box
-            p={["6", "8"]}
-            bg="gray.800"
-            borderRadius={8}
-            pb="4"
-          >
-            <Text fontSize="lg" mb="4">Inscrições da semana</Text>
-            <Chart options={options} series={series} type="area" height={160} />
-          </Box>
-          <Box
-            p={["6", "8"]}
-            bg="gray.800"
-            borderRadius={8}
-          // pb="4"
-          >
-            <Text fontSize="lg" mb="4">Taxa de abertura</Text>
-            <Chart options={options} series={series} type="area" height={160} />
-          </Box>
-        </SimpleGrid>
+          <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
+            <h2>Dashboard {user?.email}</h2>
+            <Box
+              p={["6", "8"]}
+              bg="gray.800"
+              borderRadius={8}
+              pb="4"
+            >
+              <Text fontSize="lg" mb="4">Inscrições da semana</Text>
+              <Chart options={options} series={series} type="area" height={160} />
+            </Box>
+            <Box
+              p={["6", "8"]}
+              bg="gray.800"
+              borderRadius={8}
+            // pb="4"
+            >
+              <Text fontSize="lg" mb="4">Taxa de abertura</Text>
+              <Chart options={options} series={series} type="area" height={160} />
+            </Box>
+          </SimpleGrid>
 
+        </Flex>
       </Flex>
-    </Flex>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  const apiClient = setupAPIClient(ctx);
+  const response = await apiClient.get('/me');
+  
+  return {
+    props: {}
+  }
+})
