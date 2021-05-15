@@ -16,6 +16,7 @@ import { GetServerSideProps } from "next";
 export default function UserList({ users }) {
   const [page, setPage] = useState(1);
   const { data, isLoading, isFetching, error } = useUsers(page);
+  console.log(users)
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -25,7 +26,7 @@ export default function UserList({ users }) {
   async function handlePrefetchUser(userId: string) {
     await queryClient.prefetchQuery(['user', userId], async () => {
       const response = await api.get(`users/${userId}`);
-
+      
       return response.data;
     }, {
       staleTime: 1000 * 60 * 10, //10 minuntos
@@ -95,7 +96,7 @@ export default function UserList({ users }) {
                           <Text fontSize="small">{user.email}</Text>
                         </Box>
                       </Td>
-                      {isWideVersion && <Td>{user.createdAt}</Td>}
+                      {isWideVersion && <Td>10/04/2021</Td>}
                     </Tr>
                   ))}
                 </Tbody>

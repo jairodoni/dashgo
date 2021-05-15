@@ -24,7 +24,22 @@ export const theme = extendTheme({
       body: {
         bg: 'gray.900',
         color: 'gray.50'
-      }
+      },
+    /* width */
+    "::-webkit-scrollbar": {
+      width: "5px",
+    },
+    
+    /* Track */
+    "::-webkit-scrollbar-track": {
+      background: "#312952",
+    },
+    
+    /* Handle */
+    "::-webkit-scrollbar-thumb": {
+      borderRadius: "10rem",
+      background: "gray.500",
+    },
     }
   }
 })
