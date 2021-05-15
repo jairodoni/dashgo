@@ -65,7 +65,7 @@
 
 ## **💻 Projeto**
 
-Ignews é um blog de tecnologia voltado a programação, com serviço pago mensal, com intenção de manter as pessoas antenadas nas atualidades e recursos que temos atualmente para deselvolvimento de softwares mais eficientes.
+Dashgo é um modelo de dashboard com technologias avançadas do frontend, com tela de login, tela com graficos, tabela de usuarios e tela de cadastro de usuários.
 
 ---
 
