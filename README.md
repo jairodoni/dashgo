@@ -96,6 +96,7 @@ Você pode visualizar o layout do projeto no formato através [desse link](https
   - **[Next.js][next]**
   - **[MirageJS][miragejs]**
   - **[Axios][axios]**
+  - **[Chakra UI][chakraui]**
    
 > \* Veja o arquivo <kbd>[package.json](./package.json)</kbd>
 
@@ -222,6 +223,8 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 [next]: https://nextjs.org/
 
 [typescript]: https://www.typescriptlang.org/
+
+[chakraui]: https://chakra-ui.com
 
 [miragejs]: https://miragejs.com
 
