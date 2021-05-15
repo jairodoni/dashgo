@@ -65,7 +65,7 @@
 
 ## **💻 Projeto**
 
-Dashgo é um modelo de dashboard com technologias avançadas do frontend, com tela de login, tela com graficos, tabela de usuarios e tela de cadastro de usuários.
+Dashgo é um modelo de dashboard com tecnologias avançadas do frontend, com tela de login, tela com graficos, tabela de usuários e tela de cadastro de usuários.
 
 ---
 
