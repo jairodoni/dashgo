@@ -95,8 +95,10 @@ Você pode visualizar o layout do projeto no formato através [desse link](https
   - **[Typescript][typescript]**
   - **[Next.js][next]**
   - **[MirageJS][miragejs]**
-  - **[Axios][axios]**
   - **[Chakra UI][chakraui]**
+  - **[Apex Charts][apexcharts]**
+  - **[Axios][axios]**
+   
    
 > \* Veja o arquivo <kbd>[package.json](./package.json)</kbd>
 
@@ -212,11 +214,9 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 
 [next_auth]: https://next-auth.js.org
 
-[stripe]: https://stripe.com/docs
+[apexcharts]: https://apexcharts.com
 
 [faunadb]: https://fauna.com
-
-[prismic]: https://prismic.io
 
 [github_oauth]: https://docs.github.com/pt/developers/apps/authorizing-oauth-apps
 
